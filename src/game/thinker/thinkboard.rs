@@ -1,12 +1,8 @@
-use bevy::{
-    prelude::*, 
-    platform::collections::HashMap};
+use bevy::{platform::collections::HashMap, prelude::*};
 
-
-
-#[derive(Default, Reflect, Eq, Hash, PartialEq)]
+#[derive(Clone, Default, Debug, Reflect, Eq, Hash, PartialEq)]
 #[reflect(Default)]
-enum BoardKeys {
+pub enum BoardKeys {
     #[default]
     Unknown,
     Health,
@@ -15,7 +11,7 @@ enum BoardKeys {
 
 #[derive(Default, Reflect)]
 #[reflect(Default)]
-enum BoardValueTypes {
+pub enum BoardValueTypes {
     #[default]
     Int,
     Float,
@@ -23,9 +19,8 @@ enum BoardValueTypes {
     Bool,
 }
 
-
-#[derive(Component)]
-pub struct ThinkerBoard {
+#[derive(Component, Clone, Default, Debug, Reflect)]
+pub struct ThinkBoard {
     main_goal: bool,
     bonus: u32,
 
@@ -34,7 +29,7 @@ pub struct ThinkerBoard {
     int_map: HashMap<BoardKeys, i32>,
 }
 
-impl ThinkerBoard {
+impl ThinkBoard {
     pub fn get_bool(&self, key: BoardKeys) -> Option<bool> {
         self.bool_map.get(&key).copied()
     }

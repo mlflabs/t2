@@ -1,28 +1,21 @@
 use bevy::prelude::*;
 use bevy_aseprite_ultra::prelude::*;
 
-use crate::game::thinker::{
-    Score, 
-    ThinkerTag,
-    Scorer, 
-    Scorers, 
-    SCORER_STATIC, 
-    STATE_IDLE, 
-    ScorerComparisons};
+// use crate::game::thinker::{
+//     Scorer, ScorerComparisons, Scorers, Thinker, SCORER_STATIC, STATE_IDLE,
+// };
 
 pub struct SpritesPlugin;
 
 impl Plugin for SpritesPlugin {
     fn build(&self, app: &mut App) {
         app.add_plugins(AsepriteUltraPlugin)
-           .add_systems(Startup, setup);
+            .add_systems(Startup, setup);
     }
 }
 
-
-
 fn setup(mut cmd: Commands, server: Res<AssetServer>) {
-        cmd.spawn((
+    cmd.spawn((
         AseAnimation {
             animation: Animation::tag("Walk")
                 .with_repeat(AnimationRepeat::Loop)
@@ -32,28 +25,21 @@ fn setup(mut cmd: Commands, server: Res<AssetServer>) {
         },
         Sprite::default(),
         Transform::from_translation(Vec3::new(15., 0., 0.)),
-        Player {
-            walk_speed: 30.,
-        },
-        ThinkerTag,
-        Score::default(),
-        Scorers {
-            scorers: vec![
-                Scorer {
-                    scorer_type: SCORER_STATIC,
-                    comparison: ScorerComparisons::Contains,
-                    value: 0.1,
-                    score: 0.0,
-                    state: STATE_IDLE,
-                }
-
-
-            ],
-        },
-        
+        Player { walk_speed: 30. },
+        // Thinker::default(),
+        // Scorers {
+        //     scorers: vec![Scorer {
+        //         scorer_type: SCORER_STATIC,
+        //         comparison: ScorerComparisons::Contains,
+        //         value: 0.1,
+        //         success_score: 1.0,
+        //         failure_score: 0.0,
+        //         state: STATE_IDLE,
+        //         last_score: 0.0,
+        //     }],
+        // },
     ));
 }
-
 
 #[derive(Component, Debug)]
 pub struct Player {
