@@ -26,15 +26,15 @@ impl Plugin for ThinkerPlugin {
 }
 
 fn setup(mut cmd: Commands, server: Res<AssetServer>) {
-    let s = ThinkState::new();
-    let m = MoveToTargetAction { speed: 30. };
-    let m2 = MoveToTargetAction { speed: 32. };
+    // let s = ThinkState::new();
+    // let m = MoveToTargetAction::default();
+    // let m2 = MoveToTargetAction::default();
     let t = Thinker::new()
         .add_state(
             ThinkState::new()
-                .add_action(m.clone())
-                .add_action(m2.clone())
-                .add_scorer(StaticScorer::new(0.1))
+                //.add_action(m.clone())
+                // .add_action(TestAction::default())
+                // .add_scorer(StaticScorer::new(0.1))
                 .clone(),
         )
         .build();
@@ -48,7 +48,7 @@ fn setup(mut cmd: Commands, server: Res<AssetServer>) {
         ThinkBoard::default(),
         t,
     ));
-}
+} 
 
 #[derive(Component, Debug)]
 pub struct Player {

@@ -13,6 +13,28 @@
         {
             "color": "#ff000000",
             "drawFill": true,
+            "id": 416,
+            "members": [
+                {
+                    "name": "0",
+                    "type": "int",
+                    "value": 0
+                },
+                {
+                    "name": "1",
+                    "type": "int",
+                    "value": 0
+                }
+            ],
+            "name": "(u16, u16)",
+            "type": "class",
+            "useAs": [
+                "property"
+            ]
+        },
+        {
+            "color": "#ff000000",
+            "drawFill": true,
             "id": 2,
             "members": [
                 {
@@ -96,6 +118,24 @@
             ]
         },
         {
+            "color": "#ff000000",
+            "drawFill": true,
+            "id": 417,
+            "members": [
+                {
+                    "name": ":variant",
+                    "propertyType": "bevy_audio::audio::PlaybackMode:::Variant",
+                    "type": "string",
+                    "value": "Once"
+                }
+            ],
+            "name": "bevy_audio::audio::PlaybackMode",
+            "type": "class",
+            "useAs": [
+                "property"
+            ]
+        },
+        {
             "id": 7,
             "name": "bevy_audio::audio::PlaybackMode:::Variant",
             "storageType": "string",
@@ -115,6 +155,7 @@
             "members": [
                 {
                     "name": "mode",
+                    "propertyType": "bevy_audio::audio::PlaybackMode",
                     "type": "class",
                     "value": {
                     }
@@ -1619,42 +1660,6 @@
         {
             "color": "#ff000000",
             "drawFill": true,
-            "id": 72,
-            "members": [
-                {
-                    "name": "tiled_types_export_file",
-                    "propertyType": "core::option::Option<std::path::PathBuf>",
-                    "type": "class",
-                    "value": {
-                    }
-                }
-            ],
-            "name": "bevy_ecs_tiled::TiledMapPluginConfig",
-            "type": "class",
-            "useAs": [
-                "property"
-            ]
-        },
-        {
-            "color": "#ff000000",
-            "drawFill": true,
-            "id": 73,
-            "members": [
-                {
-                    "name": "0",
-                    "type": "file",
-                    "value": ""
-                }
-            ],
-            "name": "bevy_ecs_tiled::map::TiledMapHandle",
-            "type": "class",
-            "useAs": [
-                "property"
-            ]
-        },
-        {
-            "color": "#ff000000",
-            "drawFill": true,
             "id": 74,
             "members": [
             ],
@@ -1792,7 +1797,7 @@
         {
             "color": "#ff000000",
             "drawFill": true,
-            "id": 85,
+            "id": 73,
             "members": [
                 {
                     "name": "0",
@@ -1800,7 +1805,26 @@
                     "value": ""
                 }
             ],
-            "name": "bevy_ecs_tiled::world::TiledWorldHandle",
+            "name": "bevy_ecs_tiled::map::TiledMapHandle",
+            "type": "class",
+            "useAs": [
+                "property"
+            ]
+        },
+        {
+            "color": "#ff000000",
+            "drawFill": true,
+            "id": 72,
+            "members": [
+                {
+                    "name": "tiled_types_export_file",
+                    "propertyType": "core::option::Option<std::path::PathBuf>",
+                    "type": "class",
+                    "value": {
+                    }
+                }
+            ],
+            "name": "bevy_ecs_tiled::TiledMapPluginConfig",
             "type": "class",
             "useAs": [
                 "property"
@@ -1852,15 +1876,15 @@
         {
             "color": "#ff000000",
             "drawFill": true,
-            "id": 89,
+            "id": 85,
             "members": [
                 {
                     "name": "0",
-                    "type": "bool",
-                    "value": false
+                    "type": "file",
+                    "value": ""
                 }
             ],
-            "name": "bevy_ecs_tilemap::FrustumCulling",
+            "name": "bevy_ecs_tiled::world::TiledWorldHandle",
             "type": "class",
             "useAs": [
                 "property"
@@ -1925,6 +1949,23 @@
                 }
             ],
             "name": "bevy_ecs_tilemap::anchor::TilemapAnchor::Custom",
+            "type": "class",
+            "useAs": [
+                "property"
+            ]
+        },
+        {
+            "color": "#ff000000",
+            "drawFill": true,
+            "id": 89,
+            "members": [
+                {
+                    "name": "0",
+                    "type": "bool",
+                    "value": false
+                }
+            ],
+            "name": "bevy_ecs_tilemap::FrustumCulling",
             "type": "class",
             "useAs": [
                 "property"
@@ -3052,94 +3093,6 @@
         {
             "color": "#ff000000",
             "drawFill": true,
-            "id": 148,
-            "members": [
-                {
-                    "name": "size",
-                    "type": "int",
-                    "value": 2048
-                }
-            ],
-            "name": "bevy_pbr::light::DirectionalLightShadowMap",
-            "type": "class",
-            "useAs": [
-                "property"
-            ]
-        },
-        {
-            "color": "#ff000000",
-            "drawFill": true,
-            "id": 149,
-            "members": [
-            ],
-            "name": "bevy_pbr::light::NotShadowCaster",
-            "type": "class",
-            "useAs": [
-                "property"
-            ]
-        },
-        {
-            "color": "#ff000000",
-            "drawFill": true,
-            "id": 150,
-            "members": [
-            ],
-            "name": "bevy_pbr::light::NotShadowReceiver",
-            "type": "class",
-            "useAs": [
-                "property"
-            ]
-        },
-        {
-            "color": "#ff000000",
-            "drawFill": true,
-            "id": 151,
-            "members": [
-                {
-                    "name": "size",
-                    "type": "int",
-                    "value": 1024
-                }
-            ],
-            "name": "bevy_pbr::light::PointLightShadowMap",
-            "type": "class",
-            "useAs": [
-                "property"
-            ]
-        },
-        {
-            "color": "#ff000000",
-            "drawFill": true,
-            "id": 152,
-            "members": [
-                {
-                    "name": ":variant",
-                    "propertyType": "bevy_pbr::light::ShadowFilteringMethod:::Variant",
-                    "type": "string",
-                    "value": "Hardware2x2"
-                }
-            ],
-            "name": "bevy_pbr::light::ShadowFilteringMethod",
-            "type": "class",
-            "useAs": [
-                "property"
-            ]
-        },
-        {
-            "id": 153,
-            "name": "bevy_pbr::light::ShadowFilteringMethod:::Variant",
-            "storageType": "string",
-            "type": "enum",
-            "values": [
-                "Hardware2x2",
-                "Gaussian",
-                "Temporal"
-            ],
-            "valuesAsFlags": false
-        },
-        {
-            "color": "#ff000000",
-            "drawFill": true,
             "id": 154,
             "members": [
                 {
@@ -3209,6 +3162,47 @@
         {
             "color": "#ff000000",
             "drawFill": true,
+            "id": 148,
+            "members": [
+                {
+                    "name": "size",
+                    "type": "int",
+                    "value": 2048
+                }
+            ],
+            "name": "bevy_pbr::light::DirectionalLightShadowMap",
+            "type": "class",
+            "useAs": [
+                "property"
+            ]
+        },
+        {
+            "color": "#ff000000",
+            "drawFill": true,
+            "id": 149,
+            "members": [
+            ],
+            "name": "bevy_pbr::light::NotShadowCaster",
+            "type": "class",
+            "useAs": [
+                "property"
+            ]
+        },
+        {
+            "color": "#ff000000",
+            "drawFill": true,
+            "id": 150,
+            "members": [
+            ],
+            "name": "bevy_pbr::light::NotShadowReceiver",
+            "type": "class",
+            "useAs": [
+                "property"
+            ]
+        },
+        {
+            "color": "#ff000000",
+            "drawFill": true,
             "id": 156,
             "members": [
                 {
@@ -3262,6 +3256,53 @@
             "useAs": [
                 "property"
             ]
+        },
+        {
+            "color": "#ff000000",
+            "drawFill": true,
+            "id": 151,
+            "members": [
+                {
+                    "name": "size",
+                    "type": "int",
+                    "value": 1024
+                }
+            ],
+            "name": "bevy_pbr::light::PointLightShadowMap",
+            "type": "class",
+            "useAs": [
+                "property"
+            ]
+        },
+        {
+            "color": "#ff000000",
+            "drawFill": true,
+            "id": 152,
+            "members": [
+                {
+                    "name": ":variant",
+                    "propertyType": "bevy_pbr::light::ShadowFilteringMethod:::Variant",
+                    "type": "string",
+                    "value": "Hardware2x2"
+                }
+            ],
+            "name": "bevy_pbr::light::ShadowFilteringMethod",
+            "type": "class",
+            "useAs": [
+                "property"
+            ]
+        },
+        {
+            "id": 153,
+            "name": "bevy_pbr::light::ShadowFilteringMethod:::Variant",
+            "storageType": "string",
+            "type": "enum",
+            "values": [
+                "Hardware2x2",
+                "Gaussian",
+                "Temporal"
+            ],
+            "valuesAsFlags": false
         },
         {
             "color": "#ff000000",
@@ -3333,18 +3374,6 @@
         {
             "color": "#ff000000",
             "drawFill": true,
-            "id": 158,
-            "members": [
-            ],
-            "name": "bevy_pbr::light_probe::LightProbe",
-            "type": "class",
-            "useAs": [
-                "property"
-            ]
-        },
-        {
-            "color": "#ff000000",
-            "drawFill": true,
             "id": 159,
             "members": [
                 {
@@ -3407,6 +3436,18 @@
                 }
             ],
             "name": "bevy_pbr::light_probe::irradiance_volume::IrradianceVolume",
+            "type": "class",
+            "useAs": [
+                "property"
+            ]
+        },
+        {
+            "color": "#ff000000",
+            "drawFill": true,
+            "id": 158,
+            "members": [
+            ],
+            "name": "bevy_pbr::light_probe::LightProbe",
             "type": "class",
             "useAs": [
                 "property"
@@ -3669,6 +3710,58 @@
         {
             "color": "#ff000000",
             "drawFill": true,
+            "id": 175,
+            "members": [
+                {
+                    "name": ":variant",
+                    "propertyType": "bevy_picking::hover::PickingInteraction:::Variant",
+                    "type": "string",
+                    "value": "Pressed"
+                }
+            ],
+            "name": "bevy_picking::hover::PickingInteraction",
+            "type": "class",
+            "useAs": [
+                "property"
+            ]
+        },
+        {
+            "id": 176,
+            "name": "bevy_picking::hover::PickingInteraction:::Variant",
+            "storageType": "string",
+            "type": "enum",
+            "values": [
+                "Pressed",
+                "Hovered",
+                "None"
+            ],
+            "valuesAsFlags": false
+        },
+        {
+            "color": "#ff000000",
+            "drawFill": true,
+            "id": 177,
+            "members": [
+                {
+                    "name": "is_mouse_enabled",
+                    "type": "bool",
+                    "value": true
+                },
+                {
+                    "name": "is_touch_enabled",
+                    "type": "bool",
+                    "value": true
+                }
+            ],
+            "name": "bevy_picking::input::PointerInputPlugin",
+            "type": "class",
+            "useAs": [
+                "property"
+            ]
+        },
+        {
+            "color": "#ff000000",
+            "drawFill": true,
             "id": 173,
             "members": [
                 {
@@ -3715,58 +3808,6 @@
                 }
             ],
             "name": "bevy_picking::PickingPlugin",
-            "type": "class",
-            "useAs": [
-                "property"
-            ]
-        },
-        {
-            "color": "#ff000000",
-            "drawFill": true,
-            "id": 175,
-            "members": [
-                {
-                    "name": ":variant",
-                    "propertyType": "bevy_picking::hover::PickingInteraction:::Variant",
-                    "type": "string",
-                    "value": "Pressed"
-                }
-            ],
-            "name": "bevy_picking::hover::PickingInteraction",
-            "type": "class",
-            "useAs": [
-                "property"
-            ]
-        },
-        {
-            "id": 176,
-            "name": "bevy_picking::hover::PickingInteraction:::Variant",
-            "storageType": "string",
-            "type": "enum",
-            "values": [
-                "Pressed",
-                "Hovered",
-                "None"
-            ],
-            "valuesAsFlags": false
-        },
-        {
-            "color": "#ff000000",
-            "drawFill": true,
-            "id": 177,
-            "members": [
-                {
-                    "name": "is_mouse_enabled",
-                    "type": "bool",
-                    "value": true
-                },
-                {
-                    "name": "is_touch_enabled",
-                    "type": "bool",
-                    "value": true
-                }
-            ],
-            "name": "bevy_picking::input::PointerInputPlugin",
             "type": "class",
             "useAs": [
                 "property"
@@ -5434,23 +5475,6 @@
         {
             "color": "#ff000000",
             "drawFill": true,
-            "id": 254,
-            "members": [
-                {
-                    "name": "0",
-                    "type": "string",
-                    "value": ""
-                }
-            ],
-            "name": "bevy_text::text2d::Text2d",
-            "type": "class",
-            "useAs": [
-                "property"
-            ]
-        },
-        {
-            "color": "#ff000000",
-            "drawFill": true,
             "id": 255,
             "members": [
                 {
@@ -5715,6 +5739,23 @@
         {
             "color": "#ff000000",
             "drawFill": true,
+            "id": 254,
+            "members": [
+                {
+                    "name": "0",
+                    "type": "string",
+                    "value": ""
+                }
+            ],
+            "name": "bevy_text::text2d::Text2d",
+            "type": "class",
+            "useAs": [
+                "property"
+            ]
+        },
+        {
+            "color": "#ff000000",
+            "drawFill": true,
             "id": 269,
             "members": [
                 {
@@ -5753,19 +5794,10 @@
                     "value": {
                         "matrix3": {
                             "x_axis": {
-                                "x": 1,
-                                "y": 0,
-                                "z": 0
                             },
                             "y_axis": {
-                                "x": 0,
-                                "y": 1,
-                                "z": 0
                             },
                             "z_axis": {
-                                "x": 0,
-                                "y": 0,
-                                "z": 1
                             }
                         },
                         "translation": {
@@ -5832,23 +5864,6 @@
             "members": [
             ],
             "name": "bevy_transform::components::transform::TransformTreeChanged",
-            "type": "class",
-            "useAs": [
-                "property"
-            ]
-        },
-        {
-            "color": "#ff000000",
-            "drawFill": true,
-            "id": 274,
-            "members": [
-                {
-                    "name": "0",
-                    "type": "float",
-                    "value": 1
-                }
-            ],
-            "name": "bevy_ui::UiScale",
             "type": "class",
             "useAs": [
                 "property"
@@ -6060,6 +6075,23 @@
         {
             "color": "#ff000000",
             "drawFill": true,
+            "id": 286,
+            "members": [
+                {
+                    "name": "0",
+                    "type": "float",
+                    "value": 0
+                }
+            ],
+            "name": "bevy_ui::geometry::Val::Vh",
+            "type": "class",
+            "useAs": [
+                "property"
+            ]
+        },
+        {
+            "color": "#ff000000",
+            "drawFill": true,
             "id": 284,
             "members": [
                 {
@@ -6086,23 +6118,6 @@
                 }
             ],
             "name": "bevy_ui::geometry::Val::VMin",
-            "type": "class",
-            "useAs": [
-                "property"
-            ]
-        },
-        {
-            "color": "#ff000000",
-            "drawFill": true,
-            "id": 286,
-            "members": [
-                {
-                    "name": "0",
-                    "type": "float",
-                    "value": 0
-                }
-            ],
-            "name": "bevy_ui::geometry::Val::Vh",
             "type": "class",
             "useAs": [
                 "property"
@@ -6576,6 +6591,23 @@
                 }
             ],
             "name": "bevy_ui::ui_node::ZIndex",
+            "type": "class",
+            "useAs": [
+                "property"
+            ]
+        },
+        {
+            "color": "#ff000000",
+            "drawFill": true,
+            "id": 274,
+            "members": [
+                {
+                    "name": "0",
+                    "type": "float",
+                    "value": 1
+                }
+            ],
+            "name": "bevy_ui::UiScale",
             "type": "class",
             "useAs": [
                 "property"
@@ -7747,6 +7779,7 @@
                 },
                 {
                     "name": "hotspot",
+                    "propertyType": "(u16, u16)",
                     "type": "class",
                     "value": {
                         "0": 0,
@@ -8878,6 +8911,264 @@
                 "Desert"
             ],
             "valuesAsFlags": false
+        },
+        {
+            "color": "#ff000000",
+            "drawFill": true,
+            "id": 418,
+            "members": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "value": 0
+                },
+                {
+                    "name": "quantity",
+                    "type": "int",
+                    "value": 0
+                },
+                {
+                    "name": "resource_type",
+                    "propertyType": "t2::game::map::ResourceType",
+                    "type": "class",
+                    "value": {
+                    }
+                },
+                {
+                    "name": "waypoint",
+                    "type": "int",
+                    "value": 0
+                }
+            ],
+            "name": "t2::game::map::Resource",
+            "type": "class",
+            "useAs": [
+                "property"
+            ]
+        },
+        {
+            "color": "#ff000000",
+            "drawFill": true,
+            "id": 419,
+            "members": [
+                {
+                    "name": ":variant",
+                    "propertyType": "t2::game::map::ResourceType:::Variant",
+                    "type": "string",
+                    "value": "Wood"
+                }
+            ],
+            "name": "t2::game::map::ResourceType",
+            "type": "class",
+            "useAs": [
+                "property"
+            ]
+        },
+        {
+            "id": 420,
+            "name": "t2::game::map::ResourceType:::Variant",
+            "storageType": "string",
+            "type": "enum",
+            "values": [
+                "Wood",
+                "Stone",
+                "Food"
+            ],
+            "valuesAsFlags": false
+        },
+        {
+            "color": "#ff000000",
+            "drawFill": true,
+            "id": 421,
+            "members": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "value": 0
+                },
+                {
+                    "name": "quantity",
+                    "type": "int",
+                    "value": 0
+                },
+                {
+                    "name": "waypoint",
+                    "type": "int",
+                    "value": 0
+                }
+            ],
+            "name": "t2::game::map::Spawner",
+            "type": "class",
+            "useAs": [
+                "property"
+            ]
+        },
+        {
+            "color": "#ff000000",
+            "drawFill": true,
+            "id": 424,
+            "members": [
+                {
+                    "name": "custom_cost",
+                    "type": "float",
+                    "value": 0
+                },
+                {
+                    "name": "tile_type",
+                    "propertyType": "t2::game::map::TileType",
+                    "type": "class",
+                    "value": {
+                    }
+                }
+            ],
+            "name": "t2::game::map::Tile",
+            "type": "class",
+            "useAs": [
+                "property"
+            ]
+        },
+        {
+            "color": "#ff000000",
+            "drawFill": true,
+            "id": 425,
+            "members": [
+                {
+                    "name": ":variant",
+                    "propertyType": "t2::game::map::TileType:::Variant",
+                    "type": "string",
+                    "value": "Unknown"
+                }
+            ],
+            "name": "t2::game::map::TileType",
+            "type": "class",
+            "useAs": [
+                "property"
+            ]
+        },
+        {
+            "id": 426,
+            "name": "t2::game::map::TileType:::Variant",
+            "storageType": "string",
+            "type": "enum",
+            "values": [
+                "Unknown",
+                "Forest",
+                "Plain",
+                "Moutain",
+                "Desert",
+                "Road",
+                "River"
+            ],
+            "valuesAsFlags": false
+        },
+        {
+            "color": "#ff000000",
+            "drawFill": true,
+            "id": 422,
+            "members": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "value": 0
+                },
+                {
+                    "name": "name",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "population",
+                    "type": "int",
+                    "value": 0
+                },
+                {
+                    "name": "waypoint",
+                    "type": "int",
+                    "value": 0
+                }
+            ],
+            "name": "t2::game::map::Town",
+            "type": "class",
+            "useAs": [
+                "property"
+            ]
+        },
+        {
+            "color": "#ff000000",
+            "drawFill": true,
+            "id": 423,
+            "members": [
+                {
+                    "name": "id",
+                    "type": "int",
+                    "value": 0
+                },
+                {
+                    "name": "n1",
+                    "type": "int",
+                    "value": 0
+                },
+                {
+                    "name": "n10",
+                    "type": "int",
+                    "value": 0
+                },
+                {
+                    "name": "n2",
+                    "type": "int",
+                    "value": 0
+                },
+                {
+                    "name": "n3",
+                    "type": "int",
+                    "value": 0
+                },
+                {
+                    "name": "n4",
+                    "type": "int",
+                    "value": 0
+                },
+                {
+                    "name": "n5",
+                    "type": "int",
+                    "value": 0
+                },
+                {
+                    "name": "n6",
+                    "type": "int",
+                    "value": 0
+                },
+                {
+                    "name": "n7",
+                    "type": "int",
+                    "value": 0
+                },
+                {
+                    "name": "n8",
+                    "type": "int",
+                    "value": 0
+                },
+                {
+                    "name": "n9",
+                    "type": "int",
+                    "value": 0
+                },
+                {
+                    "name": "pos",
+                    "propertyType": "glam::Vec3",
+                    "type": "class",
+                    "value": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    }
+                }
+            ],
+            "name": "t2::game::map::Waypoint",
+            "type": "class",
+            "useAs": [
+                "property"
+            ]
         }
     ]
 }

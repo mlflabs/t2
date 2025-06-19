@@ -1,6 +1,7 @@
 use bevy::prelude::*;
 use bevy_aseprite_ultra::prelude::*;
 
+use super::thinker::*;
 // use crate::game::thinker::{
 //     Scorer, ScorerComparisons, Scorers, Thinker, SCORER_STATIC, STATE_IDLE,
 // };
@@ -15,6 +16,16 @@ impl Plugin for SpritesPlugin {
 }
 
 fn setup(mut cmd: Commands, server: Res<AssetServer>) {
+
+    let thinker  = Thinker::default()
+        .add_state(
+            ThinkState::new()
+                // .add_action(MoveToTargetAction::default())
+                // .add_action(TestAction::default())
+                // .add_scorer(StaticScorer::new(0.1))
+                .clone(),
+        );
+
     cmd.spawn((
         AseAnimation {
             animation: Animation::tag("Walk")

@@ -1,10 +1,18 @@
 {
-    "activeFile": "demo.tmx",
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "orthogonal/finite_embedded.tmx",
     "expandedProjectPaths": [
+        "orthogonal",
         "hexagonal",
         "."
     ],
     "fileStates": {
+        "": {
+            "scaleInDock": 1
+        },
         "//wsl.localhost/Ubuntu/home/mike/b/t2/assets/Magic Market/Tilesets/Objects.tsx": {
             "dynamicWrapping": true,
             "scaleInDock": 2
@@ -35,8 +43,15 @@
             "scaleInDock": 2
         },
         "//wsl.localhost/Ubuntu/home/mike/b/t2/assets/tiles/drjamgo_hex_16x16.tsx": {
+            "dynamicWrapping": false,
             "scaleInDock": 2,
             "scaleInEditor": 4
+        },
+        "//wsl.localhost/Ubuntu/home/mike/b/t2/assets/tiles/orthogonal_1.tsx": {
+            "scaleInDock": 1
+        },
+        "//wsl.localhost/Ubuntu/home/mike/b/t2/assets/tiles/orthogonal_2.tsx": {
+            "scaleInDock": 1
         },
         "//wsl.localhost/Ubuntu/home/mike/b/t2/assets/tiles/simple hex flat top.tsx": {
             "scaleInDock": 1
@@ -46,27 +61,38 @@
             "scaleInDock": 2,
             "scaleInEditor": 1
         },
+        "E:/old/Pixel/0x72_16x16DungeonTileset_walls.v1.tmx": {
+            "scale": 1.0202604166666667,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 479.77946806881414,
+                "y": 480.26953902700495
+            }
+        },
+        "E:/old/Pixel/0x72_16x16DungeonTileset_walls.v1.tmx#0x72_16x16DungeonTileset_walls.v1": {
+            "scaleInDock": 1
+        },
         "demo.tmx": {
             "scale": 1.1518749999999998,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 209.65816603364084,
-                "y": 320.34725990233324
+                "x": 319.91318502441675,
+                "y": 197.06999457406408
             }
         },
         "hexagonal/finite_flat_top_even.tmx": {
             "scale": 0.8606837606837606,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 457.1946375372394,
-                "y": 584.4190665342602
+                "x": 457.1946375372393,
+                "y": 584.4190665342603
             }
         },
         "hexagonal/finite_flat_top_odd.tmx": {
             "scale": 0.9446529080675421,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 457.84011916583927,
+                "x": 457.8401191658392,
                 "y": 532.4707050645483
             }
         },
@@ -86,24 +112,84 @@
                 "y": 108.3846833272718
             }
         },
-        "punyworld-overworld-tiles.tsx": {
-            "dynamicWrapping": false,
-            "scaleInDock": 2,
-            "scaleInEditor": 4
+        "hexagonal/infinite_pointy_top_odd.tmx": {
+            "scale": 3,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 64.16666666666666,
+                "y": 88.66666666666664
+            }
         },
-        "samplemap1.tmj": {
-            "scale": 1.2587499999999998,
+        "orthogonal/finite.tmx": {
+            "scale": 2.078125,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 399.20556107249257,
-                "y": 399.60278053624637
+                "x": 159.99999999999997,
+                "y": 159.7593984962406
+            }
+        },
+        "orthogonal/finite_embedded.tmx": {
+            "scale": 2.078125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 153.74436090225564,
+                "y": 159.7593984962406
+            }
+        },
+        "orthogonal/finite_embedded.tmx#Tile Set": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1
+        },
+        "orthogonal/infinite.tmx": {
+            "scale": 0.6494140625,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -0.7699248120300695,
+                "y": 0
+            }
+        },
+        "orthogonal/multiple_layers_with_colliders.tmx": {
+            "scale": 1.0390625,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 319.99999999999994,
+                "y": 319.5187969924812
+            }
+        },
+        "orthogonal/multiple_tilesets.tmx": {
+            "scale": 2.078125,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 159.99999999999997,
+                "y": 159.7593984962406
+            }
+        },
+        "punyworld-overworld-tiles.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1.5
+        },
+        "road_vertical.tmx": {
+            "scale": 3,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 62.33333333333332,
+                "y": 130
+            }
+        },
+        "samplemap1.tmj": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 400,
+                "y": 400
             }
         },
         "samplemap1.tmx": {
             "scale": 1.2587499999999998,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 298.3118172790467,
+                "x": 399.6027805362463,
                 "y": 399.60278053624637
             }
         },
@@ -116,36 +202,61 @@
             }
         },
         "samplemap2.tmx": {
-            "scale": 3,
-            "selectedLayer": 2,
+            "expandedObjectLayers": [
+                7
+            ],
+            "scale": 1.5,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 240.16666666666666,
-                "y": 240
+                "x": 240.33333333333331,
+                "y": 239.3333333333333
+            }
+        },
+        "samplemap2.tmx#punyworld-overworld": {
+            "scaleInDock": 1
+        },
+        "small.tmx": {
+            "scale": 3,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 32,
+                "y": 32
             }
         }
     },
     "frame.defaultDuration": 200,
     "last.objectTypesPath": "//wsl.localhost/Ubuntu/home/mike/b/t2/my_tiled_export_file.json",
+    "map.height": 4,
     "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "map.width": 4,
     "openFiles": [
         "samplemap2.tmx",
-        "samplemap1.tmj",
         "demo.tmx",
-        "samplemap1.tmx"
-    ],
-    "project": "overworld.tiled-project",
-    "property.type": "t2::BiomeType:::Variant",
-    "recentFiles": [
-        "samplemap1.tmj",
-        "samplemap1.tmx",
-        "demo.tmx",
-        "samplemap2.tmx",
-        "punyworld-overworld-tiles.tsx",
         "hexagonal/finite_flat_top_even.tmx",
         "hexagonal/finite_flat_top_odd.tmx",
         "hexagonal/finite_pointy_top_even.tmx",
-        "//wsl.localhost/Ubuntu/home/mike/b/t2/assets/tiles/drjamgo_hex_16x16.tsx",
-        "hexagonal/finite_pointy_top_odd.tmx",
-        "C:/Users/mike1/Desktop/pixel/PUNY_WORLD_v1/Tiled/punyworld-overworld-tiles.tsx"
+        "orthogonal/finite.tmx",
+        "orthogonal/finite_embedded.tmx",
+        "orthogonal/infinite.tmx",
+        "orthogonal/multiple_layers_with_colliders.tmx",
+        "orthogonal/multiple_tilesets.tmx"
+    ],
+    "project": "overworld.tiled-project",
+    "property.type": "t2::game::map::Tile",
+    "recentFiles": [
+        "orthogonal/multiple_tilesets.tmx",
+        "orthogonal/finite.tmx",
+        "orthogonal/multiple_layers_with_colliders.tmx",
+        "orthogonal/infinite.tmx",
+        "orthogonal/finite_embedded.tmx",
+        "hexagonal/finite_pointy_top_even.tmx",
+        "hexagonal/finite_flat_top_odd.tmx",
+        "hexagonal/finite_flat_top_even.tmx",
+        "demo.tmx",
+        "samplemap2.tmx",
+        "hexagonal/infinite_pointy_top_odd.tmx",
+        "punyworld-overworld-tiles.tsx"
     ]
 }

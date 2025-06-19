@@ -10,6 +10,7 @@ pub struct ThinkerExecutingTag;
 pub enum ThinkerStage {
     Init,
     Evaluating,
+    PrepareState,
     AssigningAction,
     LoadAction,
     RunningAction,
@@ -120,6 +121,7 @@ impl ThinkState {
     }
 
     pub fn set_next_action_cloned(&mut self)-> bool {
+        //println!("Setting next action cloned, actions:: {:?}, index::: {:?}", self.actions.len(), self.action_index);
         if self.action_index < self.actions.len() {
             // Clone the Boxed action
             let action = self.actions[self.action_index].clone();

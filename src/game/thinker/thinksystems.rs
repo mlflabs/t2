@@ -1,4 +1,5 @@
 use std::fmt::Debug;
+use bevy_turborand::prelude::*;
 
 use bevy::prelude::*;
 
@@ -9,6 +10,8 @@ use super::thinker::{Thinker, ThinkerExecutingTag, ThinkerStage, ActionStage};
 
 pub fn score_management_system(
     mut cmd: Commands,
+    mut global_rng: ResMut<GlobalRng>,
+    time: Res<Time>,
     //map: Res<ActionScorerMap>,
     //actions_resource: Res<ActionsResource>,
     mut query: Query<(
@@ -19,10 +22,22 @@ pub fn score_management_system(
         Option<&DebugPrint>,
     )>,
 ) {
+
+    let mut rng = global_rng.as_mut();
+
     for (e, mut thinker, board, executing, debug) in query.iter_mut() {
         // Are we executing or picking
+
+        let print = if let Some(debug) = debug {
+            true
+        } else {
+            false
+        };
+
         if let Some(_executing) = executing {
-            println!("Thinker is executing an action, stage: {:?}", thinker.stage);
+            if print {
+                println!("Thinker is executing an action, stage: {:?}", thinker.stage);
+            }
 
             match thinker.stage {
                 ThinkerStage::LoadAction => {
@@ -33,15 +48,14 @@ pub fn score_management_system(
 
                     if state.set_next_action_cloned() {
                         if let Some(action_to_load) = state.get_current_action_mut() {
-                            action_to_load.on_enter(&mut cmd);
-                            // Print the action (using as_debug for proper trait object debug)
-                            println!("Thinker loaded action: {:?}", action_to_load.as_debug());
-                            // Transition to the next stage
+                            action_to_load.on_enter(&mut cmd, &board, print);
                             thinker.stage = ThinkerStage::RunningAction;
                         } else {}
                     }
                     else {
-                            println!("Error: Action was set but could not be retrieved mutably.");
+                            if print {
+                                println!("Error: Action was set but could not be retrieved mutably.");
+                            }
                             thinker.stage = ThinkerStage::CleaningUp;
                     }
                 }
@@ -54,30 +68,31 @@ pub fn score_management_system(
                             let current_state_index = thinker.state_index;
                             let state = &mut thinker.states[current_state_index];
 
-                            let mut next_thinker_action_stage: Option<ActionStage> = None;
+                            let mut next_thinker_action_stage: ActionStage = ActionStage::Running;
 
                             if let Some(action) = state.get_current_action_mut() {
                                 
                                 let stage = action.get_stage();
+                                next_thinker_action_stage = action.on_update(
+                                    time.delta_secs(), &mut cmd, &board, print);
 
-                                match stage {
-                                    ActionStage::Finished => {
-                                        next_thinker_action_stage = Some(ActionStage::Finished);
+                                if next_thinker_action_stage != ActionStage::Running {
+                                    match stage {
+                                        ActionStage::Finished => {
+                                            next_thinker_action_stage = ActionStage::Finished;
+                                        }
+                                        ActionStage::Failed => {
+                                            next_thinker_action_stage = ActionStage::Failed;
+                                        }
+                                        _ => {}
                                     }
-                                    ActionStage::Failed => {
-                                        next_thinker_action_stage = Some(ActionStage::Failed);
-                                    }
-                                    _ => {}
                                 }
-                                action.on_update(&mut cmd);
                             } else {
                                 thinker.stage = ThinkerStage::ActionCleanup;
                             }
 
-                            if let Some(stage) = next_thinker_action_stage {
-                                thinker.action_stage = stage; // This is now safe
-                                // Also transition the main thinker stage based on the action's result
-                                thinker.stage = ThinkerStage::ActionCleanup;
+                            if next_thinker_action_stage != ActionStage::Running {
+                                thinker.action_stage = next_thinker_action_stage;
                             }
                         }
                         ActionStage::Finished => {
@@ -99,19 +114,23 @@ pub fn score_management_system(
                     let state = &mut thinker.states[current_state_index];
 
                     if let Some(action_to_cleanup) = state.get_current_action_mut() {
-                        action_to_cleanup.on_exit(&mut cmd);
-                        // Print the action (using as_debug for proper trait object debug)
-                        println!(
-                            "Thinker cleaned up action: {:?}",
-                            action_to_cleanup.as_debug()
-                        );
+                        action_to_cleanup.on_exit(&mut cmd, &board, print);
+                        
+                        if print {
+                            println!(
+                                "Thinker cleaned up action: {:?}",
+                                action_to_cleanup.as_debug()
+                            );
+                        }
+
+
                         // Transition to the next stage
                         thinker.stage = ThinkerStage::LoadAction;
                         thinker.action_stage = ActionStage::Running;
                     } else {
-                        // This case should ideally not be hit if set_next_action_cloned returns true
-                        // but it's good defensive programming.
-                        println!("Error: Action was set but could not be retrieved mutably.");
+                        if print {
+                            println!("Error: Action was set but could not be retrieved mutably.");
+                        }
                         thinker.stage = ThinkerStage::CleaningUp;
                     }
                 }
@@ -122,14 +141,15 @@ pub fn score_management_system(
 
                 _ => {
                     // If we are in a stage other than LoadAction, we should not be executing
-                    println!("Thinker is in an unexpected stage: {:?}", thinker.stage);
+                    if print {
+                        println!("Thinker is in an unexpected stage: {:?}", thinker.stage);
+                    }
                 }
             }
         } else {
-            println!(
-                "Thinker is not executing an action, stage: {:?}",
-                thinker.stage
-            );
+            if print {      
+                println!("Thinker is not executing an action, stage: {:?}", thinker.stage);
+            }
 
             match thinker.stage {
                 ThinkerStage::Init => {
@@ -143,10 +163,13 @@ pub fn score_management_system(
                     let mut max_index: usize = 0;
                     let mut index: usize = 0;
                     for state in &mut thinker.states {
-                        let mut score: f32 = 0.0;
+                        let mut score: f32 = 1.0;
 
                         for scorer in &state.scorers {
-                            score *= scorer.score(&board);
+                            if print {
+                                println!("*****Scorer: {:?}", scorer);
+                            }
+                            score *= scorer.score(&board, &mut rng);
                         }
                         if score > max_value {
                             max_value = score;
@@ -156,13 +179,19 @@ pub fn score_management_system(
                     }
                     thinker.state_index = max_index;
                     thinker.state_value = max_value;
-                    thinker.stage = ThinkerStage::AssigningAction;
-                    println!(
-                        "Thinker Evaluated: {:?}, value: {}",
-                        thinker.state_index, thinker.state_value
-                    );
+                    thinker.stage = ThinkerStage::PrepareState;
+                    if print {
+                        println!("Thinker Evaluated: {:?}, value: {}", thinker.state_index, thinker.state_value );
+                    }
                 }
-                ThinkerStage::AssigningAction => {
+                ThinkerStage::PrepareState => {
+                    let current_state_index = thinker.state_index;
+                    let state = &mut thinker.states[current_state_index];
+
+                    state.reset();
+
+
+
                     thinker.stage = ThinkerStage::LoadAction;
                     cmd.entity(e).insert(ThinkerExecutingTag);
                 }
@@ -180,120 +209,3 @@ pub fn score_management_system(
         }
     }
 }
-
-/*
-for (e, mut score, mut action,thinker) in scorers.iter_mut() {
-    //Are we executing or picking
-    // if let i = &map {
-    //    println!("res:::::::::::::::::{:?}", i.map);
-    // }
-
-    if let Some(_thinker) = thinker {
-        match action.state {
-            ActionState::Init => {
-                println!("thinker Action, Initial");
-                //ActionState::Running
-                action.state = ActionState::Running;
-            },
-            ActionState::Running => {
-                //ActionState::Cleanup
-            },
-            ActionState::Cleanup => {
-                println!("AcitonState::Cleanup");
-                let i = map.map.get(&score.scorer).unwrap();
-
-                //let mut index = 0;
-                let mut idx = 0;
-
-                for id in i.iter(){
-                    println!("1, {:?}, {:?}", id, &action.action);
-                    println!("Score: {:?}", &score);
-                    println!("Action: {:?}", &action);
-                    if id == &action.action {
-                        println!("2");
-                        if idx == i.len() - 1 {
-                            println!("3");
-                            //last record
-                            cmd.entity(e).remove::<ThinkerExecutingActionTag>();
-                            let c = ComponentId::new(*id);
-                            cmd.entity(e).remove_by_id(c);
-                        }
-                        else {
-                            println!("4");
-                            //more action to go
-                            let c = ComponentId::new(action.action);
-                            cmd.entity(e).remove_by_id(c);
-
-                            let cc = ComponentId::new(i[idx + 1]);
-                            //cmd.entity(e).insert_by_id(cc, {});
-                            //unsafe { cmd.entity(e).insert_by_id(cc, {}) };
-
-                            //let ttt = RestAction::default();
-                            //let sdf = cmd.(ttt);
-
-                        }
-                    }
-                    else {
-                        println!("5: {:?}", idx);
-                        idx += 1;
-                    }
-                }
-
-                //let t = map.map.get(&score.scorer);
-
-
-
-
-
-                //ActionState::Init
-            },
-            _ => {
-
-            }
-            //ActionState::Finished => ActionState::Init
-        };
-    }
-    else {
-        score.step = match score.step {
-            ScorerStep::Init => {
-                //println!("Thinker INIT");
-                score.previous_winner2 = score.previous_winner.clone();
-                score.previous_winner = score.scorer.clone();
-                score.value = 0.;
-                score.scorer = usize::default();
-
-                ScorerStep::Evaluating
-            },
-            ScorerStep::Evaluating => ScorerStep::AssigningAction,
-            ScorerStep::AssigningAction => {
-                println!("AssigningAction");
-                println!("Score: {:?}", score);
-                let i = map.map.get(&score.scorer);
-                if let Some(v)  = i {
-                    let cc = ComponentId::new(v[0]);
-                    unsafe { cmd.entity(e).insert_by_id(cc, {}) };
-                    action.action = v[0];
-
-                    ScorerStep::CleaningUp
-                }
-                else {
-                    println!("Scorer doesn't point to any action");
-                    //nothing found, lets go back and try again
-                    ScorerStep::Init
-                }
-            }
-            ScorerStep::CleaningUp => {
-                println!("Thinker cleanup");
-                cmd.entity(e).insert(ThinkerExecutingActionTag);
-                ScorerStep::Finished
-            },
-            ScorerStep::Finished => ScorerStep::Init
-
-        }
-    }
-
-
-
-}
-
- */

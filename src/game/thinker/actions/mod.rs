@@ -1,12 +1,20 @@
 use bevy::prelude::*;
 use std::fmt::Debug;
 
+use crate::game::ActionStage;
+
+use super::ThinkBoard;
+
+mod print;
+mod wait;
+mod move_to_target;
+
 pub trait ThinkAction: Send + Sync + 'static {
     // These methods take `&mut self` so they can modify the concrete action instance if needed.
     // They also need the World and EntityCommands to interact with the ECS.
-    fn on_enter(&mut self, commands: &mut Commands);
-    fn on_exit(&mut self,  commands: &mut Commands);
-    fn on_update(&mut self, commands: &mut Commands);
+    fn on_enter(&mut self, commands: &mut Commands, board: &ThinkBoard, debug:bool);
+    fn on_exit(&mut self,  commands: &mut Commands, board: &ThinkBoard, debug:bool);
+    fn on_update(&mut self, delta:f32, commands: &mut Commands, board: &ThinkBoard, debug:bool) -> ActionStage;
 
     fn get_stage(&self) -> super::ActionStage;
 
@@ -30,37 +38,5 @@ impl Clone for Box<dyn ThinkAction> {
 impl Debug for Box<dyn ThinkAction> {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         self.as_debug().fmt(f)
-    }
-}
-
-#[derive(Clone, Default, Debug, Reflect)]
-pub struct MoveToTargetAction {
-    pub speed: f32,
-    // Other state specific to this action
-}
-
-impl ThinkAction for MoveToTargetAction {
-    fn on_enter(&mut self, _commands: &mut Commands) {
-        println!("Entering MoveToTargetAction for target: on_enter");
-    }
-
-    fn on_exit(&mut self, _commands: &mut Commands) {
-        println!("Exiting MoveToTargetAction.");
-    }
-
-    fn on_update(&mut self, _commands: &mut Commands) {
-        println!("Updating MoveToTargetAction, moving towards update");
-    }
-
-    fn as_debug(&self) -> &dyn Debug {
-        self
-    }
-
-    fn clone_box(&self) -> Box<dyn ThinkAction> {
-        Box::new(self.clone()) // Requires MoveToTargetAction to be Clone
-    }
-    
-    fn get_stage(&self) -> super::ActionStage {
-        return super::ActionStage::Finished;
     }
 }

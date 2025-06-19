@@ -9,8 +9,8 @@ pub use thinker::*;
 // pub mod helpers;
 // pub use helpers::*;
 
-// pub mod map;
-// pub use map::*;
+pub mod map;
+pub use map::*;
 
 // pub mod settings;
 // pub use settings::*;
@@ -18,12 +18,17 @@ pub use thinker::*;
 pub mod sprites;
 pub use sprites::*;
 
+
 pub struct GamePlugin;
 impl Plugin for GamePlugin {
     fn build(&self, app: &mut App) {
         app
-            .add_plugins(ThinkerPlugin)
-            .add_plugins(SpritesPlugin);
+            .add_plugins((
+                ThinkerPlugin,
+                SpritesPlugin,
+                MapPlugin,
+               
+            ));
         //.add_plugins((ThinkerPlugin, VoxelsPlugins));
 
         //.register_type::<Thirst>()

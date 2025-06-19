@@ -1,10 +1,14 @@
 use bevy::prelude::*;
 use std::fmt::Debug;
+use bevy_turborand::prelude::*;
 
 use super::ThinkBoard;
 
+mod random;
+mod staticscorer;
+
 pub trait ThinkScorer: Send + Sync + 'static {
-    fn score(&self, board: &ThinkBoard) -> f32;
+    fn score(&self, board: &ThinkBoard,rng: &mut GlobalRng) -> f32;
 
     fn as_debug(&self) -> &dyn Debug;
     fn clone_box(&self) -> Box<dyn ThinkScorer>;
@@ -22,27 +26,3 @@ impl Clone for Box<dyn ThinkScorer> {
     }
 }
 
-#[derive(Clone, Debug, Reflect)]
-pub struct StaticScorer {
-    pub value: f32,
-}
-
-impl StaticScorer {
-    pub fn new(value: f32) -> Self {
-        StaticScorer { value }
-    }
-}
-
-impl ThinkScorer for StaticScorer {
-    fn score(&self, _board: &ThinkBoard) -> f32 {
-        self.value
-    }
-
-    fn as_debug(&self) -> &dyn Debug {
-        self
-    }
-
-    fn clone_box(&self) -> Box<dyn ThinkScorer> {
-        Box::new(self.clone())
-    }
-}
